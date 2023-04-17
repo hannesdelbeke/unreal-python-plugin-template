@@ -2,6 +2,7 @@
 A minimalism template for pure Python plugins in Unreal.<br>
 For more advanced C++ templates see [UnrealExtenstionPluginsTemplates](https://github.com/laycnc/UnrealExtenstionPluginsTemplates)
 
+### Content
 ```
 📂 My-Plugin
 ├── 📂 Content
