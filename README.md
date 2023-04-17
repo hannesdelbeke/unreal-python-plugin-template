@@ -28,7 +28,7 @@ For more advanced C++ templates see [UnrealExtenstionPluginsTemplates](https://g
 ### (OPTIONAL) Add Plugget install support
 To support 1-click install & automatically install all dependencies in the `requirements.txt` file, you can add [plugget](https://github.com/hannesdelbeke/plugget) support.
 1. Upload your plugin to a repo.
-2. Create a plugget manifest ([sample manifest](https://github.com/hannesdelbeke/plugget-pkgs/blob/main/unreal/unreal-script-editor/latest.json)) for your plugin, and make a PR in [plugget-pkgs](https://github.com/hannesdelbeke/plugget-pkgs)
+2. Create a plugget manifest ([sample manifest](https://github.com/hannesdelbeke/plugget-pkgs/blob/main/unreal/unreal-script-editor/latest.json)) that points to your repo, and make a PR in [plugget-pkgs](https://github.com/hannesdelbeke/plugget-pkgs)
 3. Add the plugget-install instructions to your README: 
 
 > Installation with plugget automatically installs all dependencies.
