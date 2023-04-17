@@ -24,3 +24,17 @@ For more advanced C++ templates see [UnrealExtenstionPluginsTemplates](https://g
 - `.gitignore` is setup to prevent unneeded python files from being commit to your git-repo.
 - `requirements.txt` Add your pip/pypi dependencies to this file, delete it if not used.
 - `README.md`: include an image & description, so people see what's your plugin about.
+
+### Add Plugget install support
+To allow easy 1 click installs, you can add plugget support to your plugin.
+1. Upload your plugin to a repo.
+2. Create a plugget manifest for your plugin, and make a PR in [plugget-pkgs](https://github.com/hannesdelbeke/plugget-pkgs)
+3. Add the plugget-install instructions to your README: 
+
+> Installation with plugget automatically installs all dependencies.
+> 1. Install the [plugget Unreal plugin](https://github.com/hannesdelbeke/plugget-unreal)
+> 2. Run these 2 Python commands: (in the bottom left of the Unreal editor) 
+> ```python
+> import plugget
+> plugget.install("unreal-script-editor")
+> ```
