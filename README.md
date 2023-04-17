@@ -1,5 +1,6 @@
 # Unreal Python plugin template
-a template to make Python plugins in Unreal
+A minimalism template for pure Python plugins in Unreal.<br>
+For more advanced C++ templates see [UnrealExtenstionPluginsTemplates](https://github.com/laycnc/UnrealExtenstionPluginsTemplates)
 
 ```
 📂 My-Plugin
@@ -19,4 +20,4 @@ a template to make Python plugins in Unreal
 - `My-Plugin.uplugin` Rename this file to your plugin name, and open it with a text editor & edit the content.
 - `.gitignore` is setup to prevent unneeded python files from being commit to your git-repo.
 - `requirements.txt` Add your pip/pypi dependencies to this file, delete it if not used.
-- `README.md`: It's a good practice to include a brief description & image, so people can see what your plugin is about before installing it.
+- `README.md`: include an image & description, so people see what's your plugin about.
