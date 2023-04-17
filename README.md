@@ -25,8 +25,8 @@ For more advanced C++ templates see [UnrealExtenstionPluginsTemplates](https://g
 - `requirements.txt` Add your pip/pypi dependencies to this file, delete it if not used.
 - `README.md`: include an image & description, so people see what's your plugin about.
 
-### Add Plugget install support
-To allow easy 1 click installs, you can add [plugget](https://github.com/hannesdelbeke/plugget) support to your plugin.
+### (OPTIONAL) Add Plugget install support
+To allow easy 1 click installs, and automatically install any pypi dependencies from the `requirements.txt` file, you can add [plugget](https://github.com/hannesdelbeke/plugget) support to your plugin.
 1. Upload your plugin to a repo.
 2. Create a plugget manifest for your plugin, and make a PR in [plugget-pkgs](https://github.com/hannesdelbeke/plugget-pkgs)
 3. Add the plugget-install instructions to your README: 
