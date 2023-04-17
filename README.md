@@ -26,7 +26,7 @@ For more advanced C++ templates see [UnrealExtenstionPluginsTemplates](https://g
 - `README.md`: include an image & description, so people see what's your plugin about.
 
 ### (OPTIONAL) Add Plugget install support
-To allow easy 1 click installs, and automatically install any pypi dependencies from the `requirements.txt` file, you can add [plugget](https://github.com/hannesdelbeke/plugget) support to your plugin.
+To support 1-click install & automatically install all dependencies in the `requirements.txt` file, you can add [plugget](https://github.com/hannesdelbeke/plugget) support.
 1. Upload your plugin to a repo.
 2. Create a plugget manifest for your plugin, and make a PR in [plugget-pkgs](https://github.com/hannesdelbeke/plugget-pkgs)
 3. Add the plugget-install instructions to your README: 
