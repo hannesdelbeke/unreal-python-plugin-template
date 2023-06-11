@@ -40,4 +40,4 @@ To support 1-click install & automatically install all dependencies in the `requ
 > ```
 
 ### Community
-- https://forums.unrealengine.com/t/made-a-python-plugin-template/1089878
+- unreal forum [thread](https://forums.unrealengine.com/t/made-a-python-plugin-template/1089878)
