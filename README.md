@@ -24,6 +24,7 @@ For more advanced C++ templates see [UnrealExtenstionPluginsTemplates](https://g
 - `.gitignore` is setup to prevent unneeded python files from being commit to your git-repo.
 - `requirements.txt` Add your pip/pypi dependencies to this file, delete it if not used.
 - `README.md`: include an image & description, so people see what's your plugin about.
+- `Python` This folder is added to the PYTHONPATH, put the modules you want to import in here
 
 ### (OPTIONAL) Add Plugget install support
 To support 1-click install & automatically install all dependencies in the `requirements.txt` file, you can add [plugget](https://github.com/hannesdelbeke/plugget) support.
