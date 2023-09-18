@@ -2,8 +2,6 @@
 A minimalism template for pure Python plugins in Unreal.<br>
 Example repo using this template: [unrealScriptEditor-plugin](https://github.com/hannesdelbeke/unrealScriptEditor-plugin)
 
-For more advanced C++ templates see [UnrealExtenstionPluginsTemplates](https://github.com/laycnc/UnrealExtenstionPluginsTemplates)
-
 ### Content
 ```
 📂 MyPlugin
