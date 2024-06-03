@@ -26,7 +26,7 @@ Example repo using this template: [unrealScriptEditor-plugin](https://github.com
 
 ### (OPTIONAL) Add Plugget install support
 To support 1-click install & automatically install all dependencies in the `requirements.txt` file, you can add [plugget](https://github.com/hannesdelbeke/plugget) support.
-1. Upload your plugin to a repo.
+1. Upload your plugin to a repo. ([example repo](https://github.com/hannesdelbeke/unreal-plugin-python-script-editor))
 2. Create a plugget manifest ([sample manifest](https://github.com/plugget/plugget-pkgs/blob/main/unreal/python-script-editor/latest.json)) that points to your repo, and make a PR in [plugget-pkgs](https://github.com/hannesdelbeke/plugget-pkgs)
 3. Add the plugget-install instructions to your README: 
 
