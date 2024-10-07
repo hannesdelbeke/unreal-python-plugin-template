@@ -1,6 +1,11 @@
 # Unreal Python plugin template
 A minimalism template for pure Python plugins in Unreal.<br>
-Example repo using this template: [unrealScriptEditor-plugin](https://github.com/hannesdelbeke/unrealScriptEditor-plugin)
+Example repos using this template: 
+- [unrealScriptEditor-plugin](https://github.com/hannesdelbeke/unrealScriptEditor-plugin)
+- [texture-browser-unreal-plugin](https://github.com/hannesdelbeke/texture-browser-unreal-plugin)
+- [unreal-qt-plugin](https://github.com/hannesdelbeke/unreal-qt-plugin)
+- [plugget-unreal-plugin](https://github.com/plugget/plugget-unreal-plugin)
+
 
 ### Content
 ```
