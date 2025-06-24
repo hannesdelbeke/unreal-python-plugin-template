@@ -71,7 +71,8 @@ def run_command(command, timeout=-1) -> (str, str):
 
 
 def list():
-    """return tuple of (name, version) for each installed package"""
+    """return tuple of (name, version) for each installed package
+    e.g. [('requests', '2.25.1'), ('numpy', '1.20.0')]"""
     output, error = run_command([python_interpreter, "-m", "pip", "list"])
 
     # Parse the output of the pip list command
@@ -196,22 +197,48 @@ def install(package_name: "str|List[str]" = None,
             requirements: "str|pathlib.Path" = None,
             options=None,  # list[str] extra options to pass to pip install, e.g. ["--editable"]
             add_to_path=True,  # if True, add target_path to sys.path after installation
+            skip_installed=True,  # if True, skip installation of already installed packages 
             ):
     """
     pip install a python package
     package_name: name of package to install (extra args can be passed in the package_name kwarg)
     invalidate_caches: if True, invalidate importlib caches after installation
     target_path: path where to install module too, if default_target_path is set, use that
+    skip_if_installed: if True, check if packages are already installed and skip subprocess if they are
     """
-    process = install_process(package_name=package_name, target_path=target_path, force=force, upgrade=upgrade, requirements=requirements, options=options)
-    output, error = process.communicate()
-    _print_error(error, package_name=package_name)
+    
+    missing_packages = []
+    if skip_installed and not force and not upgrade :
 
-    # exception on fail, TODO test if this doesn't trigger warnings, e.g. a pip version is outdated warning
-    return_code = process.returncode
-    if return_code != 0:
-        # Treat non-zero return code as a package installation failure
-        raise RuntimeError(f"Package installation failed with return code {return_code}: {error}")
+        # Check if we can skip installation for requirements file
+        if requirements and not package_name:
+            missing_packages = get_missing_packages_from_requirements(requirements)
+            if not missing_packages:
+                print(f"All packages from requirements file '{requirements}' are already installed.")
+                # logging.info(f"All packages from requirements file are already installed, skipping pip install")
+                return b"All package already installed", b""
+        
+        # Check if single package is already installed
+        elif package_name and not requirements:
+            parsed_name = parse_package_name(package_name)
+            if is_package_installed(parsed_name):
+                print(f"Package '{parsed_name}' is already installed.")
+                # logging.info(f"Package '{package_name}' is already installed, skipping pip install")
+                return b"Package already installed", b""
+    
+    if package_name:
+        missing_packages.append(package_name)
+    for package_name in missing_packages:
+        # install packages 1 by 1
+        process = install_process(package_name=package_name, target_path=target_path, force=force, upgrade=upgrade, requirements=requirements, options=options)
+        output, error = process.communicate()
+        _print_error(error, package_name=package_name)
+
+        # exception on fail, TODO test if this doesn't trigger warnings, e.g. a pip version is outdated warning
+        return_code = process.returncode
+        if return_code != 0:
+            # Treat non-zero return code as a package installation failure
+            raise RuntimeError(f"Package installation failed with return code {return_code}: {error}")
 
     # TODO if editable install, we add a pth file to target path.
     # but target path might not be in site_packages, and pth might not be processed.
@@ -303,4 +330,87 @@ def iter_packages_in_requirements(path: "str|Path"):
         line = line.strip()
         if line.startswith("#"):  # skip comments
             continue
+        if not line:  # skip empty lines
+            continue
         yield line
+
+
+def parse_package_name(package_spec: str) -> str:
+    """
+    Extract package name from a pip package specification. 
+    (a line of string in a requirements file)
+
+    Handles version specifiers, git URLs, etc.
+    Examples:
+    - "requests==2.25.1" -> "requests"
+    - "git+https://github.com/user/repo.git" -> "repo"
+    - "package>=1.0" -> "package"
+    """
+    package_spec = package_spec.strip()
+
+    # Handle git URLs
+    if package_spec.startswith("git+"):
+        # Extract repo name from git URL
+        repo_name = package_spec.split("/")[-1]
+        if repo_name.endswith(".git"):
+            repo_name = repo_name[:-4]
+        return repo_name
+
+    # Handle local paths
+    if package_spec.startswith((".", "/")):
+        return os.path.basename(package_spec.rstrip("/"))
+
+    # Handle package with version specifiers
+    for separator in ["==", ">=", "<=", "!=", ">", "<", "~="]:
+        if separator in package_spec:
+            return package_spec.split(separator)[0].strip()
+
+    # Handle extras like "package[extra]"
+    if "[" in package_spec:
+        return package_spec.split("[")[0].strip()
+
+    return package_spec
+
+
+def is_package_installed(package_name: str) -> bool:
+    """
+    Check if a package is installed by trying to get its version.
+    Returns True if package is installed, False otherwise.
+    """
+    try:
+        version = get_version(package_name, cached=False)
+        return bool(version)
+    except Exception:
+        return False
+    
+# plugget code - TODO decide on best method and cleanup / combine with above
+# def is_package_installed(package_name):
+#     try:
+#         importlib.metadata.version(package_name)
+#         return True
+#     except importlib.metadata.PackageNotFoundError:
+#         return False
+
+
+def get_missing_packages_from_requirements(requirements_path: "str|Path") -> "tuple[bool, list[str]]":
+    """
+    Check if all packages in requirements file are already installed.
+    Returns (all_installed, missing_packages)
+    """
+    try:
+        missing_packages = []
+
+        for package_spec in iter_packages_in_requirements(requirements_path):
+            if not package_spec.strip():  # skip empty lines
+                continue
+
+            package_name = parse_package_name(package_spec)
+            if not is_package_installed(package_name):
+                missing_packages.append(package_spec)
+
+        return missing_packages
+
+    except Exception as e:
+        logging.warning(f"Failed to check requirements: {e}")
+        # If we can't check, assume we need to install
+        return False, []
