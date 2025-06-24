@@ -73,17 +73,26 @@ def run_command(command, timeout=-1) -> (str, str):
 def list():
     """return tuple of (name, version) for each installed package
     e.g. [('requests', '2.25.1'), ('numpy', '1.20.0')]"""
-    output, error = run_command([python_interpreter, "-m", "pip", "list"])
 
-    # Parse the output of the pip list command
+    from importlib.metadata import distributions
+
     packages = []
-    raw = output.decode()
+    for dist in distributions():
+        name = dist.metadata["Name"]
+        version = dist.version
+        packages.append((name, version))
+    
+    # output, error = run_command([python_interpreter, "-m", "pip", "list"])
 
-    for line in raw.split("\n")[2:-1]:  # 2-1 skips the first lines
-        split_text = line.split()  # assumes version and package name dont contain spaces
-        if split_text:
-            name, version = split_text[:2]  # TODO edit packages contain a 3rd value: path
-            packages.append((name, version))
+    # # Parse the output of the pip list command
+    # packages = []
+    # raw = output.decode()
+
+    # for line in raw.split("\n")[2:-1]:  # 2-1 skips the first lines
+    #     split_text = line.split()  # assumes version and package name dont contain spaces
+    #     if split_text:
+    #         name, version = split_text[:2]  # TODO edit packages contain a 3rd value: path
+    #         packages.append((name, version))
 
     global __cached_installed_packages
     __cached_installed_packages = packages
