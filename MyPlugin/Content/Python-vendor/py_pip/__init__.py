@@ -180,7 +180,7 @@ def _print_error(error, package_name=None):
             return
 
         logging.error(f"There was an install error for package '{package_name}'")
-        
+
         for line in lines:
             logging.error(line)
     except Exception as e:
@@ -233,7 +233,7 @@ def install(package_name: "str|List[str]" = None,
         if default_target_path and str(default_target_path) not in sys.path:
             sys.path.append(str(default_target_path))
             logging.debug(f"Added default target path to sys.path: {default_target_path}")
-        
+
     return output, error
 
 
@@ -282,8 +282,15 @@ def uninstall(package_name=None, unimport=True, yes=True, requirements=None):  #
 
     # todo add unimport support if we uninstall from requirements
     try:
+        unimport_modules = []
+        if package_name:
+            unimport_modules.append(package_name)
+        if requirements:
+            for module in iter_packages_in_requirements(requirements):
+                unimport_modules.append(module)
         if unimport:
-            unimport_modules(package_name)
+            for package in unimport_modules:
+                unimport_modules(package)
     except Exception as e:
         logging.warning(f"unimport failed: {e}")
 
