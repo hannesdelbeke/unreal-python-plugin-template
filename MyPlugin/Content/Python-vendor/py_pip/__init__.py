@@ -288,3 +288,12 @@ def uninstall(package_name=None, unimport=True, yes=True, requirements=None):  #
         logging.warning(f"unimport failed: {e}")
 
     return output, error
+
+
+def iter_packages_in_requirements(path: "str|Path"):
+    data = Path(path).read_text().splitlines()
+    for line in data:
+        line = line.strip()
+        if line.startswith("#"):  # skip comments
+            continue
+        yield line
