@@ -48,30 +48,30 @@ def setup_vendor_module():
         # Set the interpreter and install folder
         py_pip.default_target_path = project_site_dir()
         py_pip.python_interpreter = unreal.get_interpreter_executable_path()
-        print(f"py_pip - Set default target path to: {py_pip.default_target_path}")
-        print(f"py_pip - Set Python interpreter to: {py_pip.python_interpreter}")
+        # print(f"py_pip - Set default target path to: {py_pip.default_target_path}")
+        # print(f"py_pip - Set Python interpreter to: {py_pip.python_interpreter}")
     
-        # Update py_pip itself
-        print("Updating py_pip...")
-        py_pip.install("py_pip", upgrade=True)  # Update py_pip itself
+        # # Update py_pip itself
+        # print("Updating py_pip...")
+        # py_pip.install("py_pip", upgrade=True)  # Update py_pip itself
         
         # Remove vendor path from sys.path if we added it
         if path_added and vendor_path_str in sys.path:
             sys.path.remove(vendor_path_str)
             print("Removed vendor path from sys.path")
 
-        # Reload any vendored modules to ensure we're using the latest versions
-        module_name = 'py_pip'
-        module = sys.modules[module_name]
-        del sys.modules[module_name]
+        # # Reload any vendored modules to ensure we're using the latest versions
+        # module_name = 'py_pip'
+        # module = sys.modules[module_name]
+        # del sys.modules[module_name]
         
-        # Clear the local plugget reference to force fresh import
-        if 'py_pip' in locals():
-            del py_pip
+        # # Clear the local py_pip reference to force fresh import
+        # if 'py_pip' in locals():
+        #     del py_pip
         
-        # Now import py_pip fresh (this will import the updated version)
-        import py_pip
-        print("py_pip imported fresh after cleanup")
+        # # Now import py_pip fresh (this will import the updated version)
+        # import py_pip
+        # print("py_pip imported fresh after cleanup")
         
         return py_pip
             
