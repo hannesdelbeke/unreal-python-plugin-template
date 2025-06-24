@@ -1,4 +1,7 @@
 # code in init_unreal.py wil run on startup if the plugin is enabled
+import dependencies_installer
+dependencies_installer.install_dependencies()
+
 import unreal
 
 

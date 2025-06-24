@@ -8,17 +8,21 @@ Example repos using this template:
 
 
 ### Content
-```
+```python
 📂 MyPlugin
 ├── 📂 Content
 │   └── 📂 Python
-│       └── 📄 init_unreal.py
+│       └── 📄 init_unreal.py  # customise startup logic
+│       └── 📄 dependencies_installer.py
+│       └── 📄 my_module.py  # customise this Qt Widget
+│   └── 📂 Python-vendor
+│       └── 📂 py_pip
+│   └── 📄 requirements.txt  # add your dependencies
 ├── 📂 Resources
 │   └── 🖼️ icon128.png
-└── 📄 MyPlugin.uplugin
+└── 📄 MyPlugin.uplugin  # customise uplugin settings
 📄 .gitignore
-📄 README.md
-📄 requirements.txt
+📄 README.md  # create a nice readme for your plugin
 ```
 
 ### Info
@@ -28,6 +32,8 @@ Example repos using this template:
 - `requirements.txt` Add your pip/pypi dependencies to this file, delete it if not used.
 - `README.md`: include an image & description, so people see what's your plugin about.
 - `Python` This folder is added to the PYTHONPATH, put the modules you want to import in here
+- `Python-vendor` This folder ships `py_pip` which is needed to auto install dependencies on startup from the `requirements.txt`
+
 
 # Installation
 

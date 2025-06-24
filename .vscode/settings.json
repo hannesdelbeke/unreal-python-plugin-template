@@ -1,0 +1,9 @@
+{
+    "python.analysis.extraPaths": [
+        "./MyPlugin/Content/Python-vendor"
+    ],
+    "python.autoComplete.extraPaths": [
+        "./MyPlugin/Content/Python-vendor"
+    ],
+    "python.envFile": "${workspaceFolder}/.env"
+}
