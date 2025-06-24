@@ -1,5 +1,6 @@
-import sys
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout
+from PySide6.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout
+import unreal_qt
+unreal_qt.setup()  # without this, unreal crashes when creating a widget
 
 
 class HelloWorldWidget(QWidget):
