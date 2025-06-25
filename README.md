@@ -1,5 +1,5 @@
 # Unreal Python plugin template
-A minimalism template for pure Python plugins in Unreal.<br>
+A minimalistic template for pure Python plugins in Unreal.<br>
 Example repos using this template: 
 - [unrealScriptEditor-plugin](https://github.com/hannesdelbeke/unrealScriptEditor-plugin)
 - [texture-browser-unreal-plugin](https://github.com/hannesdelbeke/texture-browser-unreal-plugin)
@@ -39,8 +39,11 @@ Example repos using this template:
 # Installation
 
 ### Manual install
-1. save the plugin in your Unreal plugins folder, e.g. `MyProject/Plugins`
-2. Enable the plugin in Unreal, and restart Unreal
+1. Place the plugin in Unreal's `MyProject/Plugins` folder
+2. Enable the plugin in Unreal 
+   1. open `Edit > Plugins`
+   2. search for `MyPlugin` (capital sensitive) and enable it
+3. Restart Unreal
 
 ### (OPTIONAL) Add Plugget install support
 To support 1-click install & automatically install all dependencies in the `requirements.txt` file, you can add [plugget](https://github.com/plugget/plugget) support.
@@ -69,3 +72,4 @@ Installation with plugget automatically installs all dependencies.
 
 ### Community
 - unreal forum [thread](https://forums.unrealengine.com/t/made-a-python-plugin-template/1089878)
+- [tech-art.org thread](https://www.tech-artists.org/t/free-a-python-unreal-plugin-template/17995)
