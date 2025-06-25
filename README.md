@@ -33,7 +33,7 @@ Example repos using this template:
 - `requirements.txt` Add your pip/pypi dependencies to this file, delete it if not used.
 - `README.md`: include an image & description, so people see what's your plugin about.
 - `Python` This folder is added to the PYTHONPATH, put the modules you want to import in here
-- `Python-vendor` This folder ships `py_pip` which is needed to auto install dependencies on startup from the `requirements.txt`
+- `dependencies_installer` This Python packages auto installs all your dependencies on startup from the `requirements.txt`, it ships with `py_pip` for the installation.
 
 
 # Installation
