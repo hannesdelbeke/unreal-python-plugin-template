@@ -13,11 +13,12 @@ Example repos using this template:
 ├── 📂 Content
 │   └── 📂 Python
 │       └── 📄 init_unreal.py  # customise startup logic
-│       └── 📄 dependencies_installer.py
 │       └── 📄 my_module.py  # customise this Qt Widget
-│   └── 📂 Python-vendor
-│       └── 📂 py_pip
-│   └── 📄 requirements.txt  # add your dependencies
+│       └── 📄 requirements.txt  # add your dependencies
+│       └── 📂 dependencies_installer
+│           └── 📄 __init__.py
+│           └── 📂 vendor
+│               └── 📂 py_pip
 ├── 📂 Resources
 │   └── 🖼️ icon128.png
 └── 📄 MyPlugin.uplugin  # customise uplugin settings
