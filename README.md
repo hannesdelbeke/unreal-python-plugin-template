@@ -39,18 +39,16 @@ Example repos using this template:
 # Installation
 
 ### Manual install
-1. save the plugin in your Unreal plugins folder
-2. pip install the Python dependencies from `requirements.txt` to Unreal's site packages folder  
-   (This can be too technical for some people)
-3. enable the plugin in Unreal, and restart Unreal
+1. save the plugin in your Unreal plugins folder, e.g. `MyProject/Plugins`
+2. Enable the plugin in Unreal, and restart Unreal
 
 ### (OPTIONAL) Add Plugget install support
-To support 1-click install & automatically install all dependencies in the `requirements.txt` file, you can add [plugget](https://github.com/hannesdelbeke/plugget) support.
-It's a bit more work for you, the developer. But it removes the technical steps for the end user.
+To support 1-click install & automatically install all dependencies in the `requirements.txt` file, you can add [plugget](https://github.com/plugget/plugget) support.
+It's a bit more work for you, the developer. But it removes the technical steps for the end user. And makes your plugin discoverable to other users.
 
 1. Upload your plugin to a repo. ([example repo](https://github.com/hannesdelbeke/unreal-python-plugin-template))
 2. Create a plugget manifest ([sample manifest](https://github.com/plugget/plugget-pkgs/blob/main/unreal/hello-world-template/latest.json)) that points to your repo,
-3. Make a PR in [plugget-pkgs](https://github.com/hannesdelbeke/plugget-pkgs) to merge it in the public Plugget database.
+3. Make a PR in [plugget-pkgs](https://github.com/plugget/plugget-pkgs) to merge it in the public Plugget database.
 4. Add the plugget-install instructions to your README:
 ```
 Installation with plugget automatically installs all dependencies.
